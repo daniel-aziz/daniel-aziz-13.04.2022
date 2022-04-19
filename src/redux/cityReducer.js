@@ -1,58 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit"
-import axios from "axios";
-import globals from "../utils/Globals";
-
-
-
-
+import { City } from "../components/models/city";
 
 
 const citySlice = createSlice({
     name: "city",
-    initialState: {
-        value: {}
-
-    },
+    initialState: { value: new City() },
     reducers: {
         setCity: (state, action) => {
-
+            state.value = action.payload
         },
-        getCity: (state, action) => {
-            let url = globals.urls.CURRENT_CONDITION
-            url = url.toString().replace("<city_key>", "215854")
-            const data = {city: {}, forcast: {}}
-            axios.get(url).then((response)=>{
-                console.log(console.log(response))
-                data.city = response.data[0]
-            })
-            state.value = {
-
-            }
-            
+        removeCity: (state) => {
+            state.value.city = new City();
         },
-        setForcast: (state, action) => {
-            state.value.forcast = action.payload;
-        },
-        getForcast: (state, action) => {
-            return state.value.forcast;
-        }
     }
 });
-function setCityValues(data) {
-    return {
-        city: {
-            name: "",
-            description: data.WeatherText,
-            MetricDegree: "",
-        }
-    }
 
-}
 
-function setForcastValues(data) {
-    return ""
-           
-}
+export const { setCity, getCity } = citySlice.actions;
 
-export const { getCity } = citySlice.actions;
 export default citySlice.reducer;

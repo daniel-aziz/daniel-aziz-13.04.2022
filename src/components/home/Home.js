@@ -1,11 +1,11 @@
 import { SearchBar } from "./search/SearchBar";
-import {LocationView} from "./location/LocationView"
+import { Current } from "./location/Current";
 
 export const Home = () => {
     return (
         <div className="Home">
             <SearchBar/>
-            <LocationView/>
+            <Current/>
         </div>
     );
 } 

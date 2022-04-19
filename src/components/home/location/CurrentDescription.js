@@ -1,9 +1,11 @@
 import {Container} from "../../styled-components/Container.styled"
 
-export const Description = () => {
+export const CurrentDescription = ({description}) => {
     return (
         <Container>
-            
+            <p>
+                Info: {description}
+            </p>
         </Container>
     );
 } 

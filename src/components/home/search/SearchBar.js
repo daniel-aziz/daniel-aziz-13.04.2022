@@ -12,7 +12,7 @@ export const SearchBar = () => {
             <form >
                 <input type="text" name="q" id="q"  />
                
-
+                
             <div id="result"></div>
         </form>
         </Container >
