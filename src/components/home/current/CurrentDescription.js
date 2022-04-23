@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import {Container} from "../../styled-components/Container.styled"
+import { H1Styled } from "../../styled-components/H1.styled";
 
 export const CurrentDescription = () => {
 
@@ -7,9 +8,9 @@ export const CurrentDescription = () => {
 
     return (
         <Container>
-            <p>
-                Info: {currentCity.description}
-            </p>
+            <H1Styled>
+                <span>{currentCity.description}</span>
+            </H1Styled>
         </Container>
     );
 } 

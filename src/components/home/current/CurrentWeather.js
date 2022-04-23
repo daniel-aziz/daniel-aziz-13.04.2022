@@ -11,8 +11,9 @@ export const CurrentWeather = () => {
 
     return (
         <Container>
-            name: {currentCity.name}
-            degree {currentPreferences.metric ? currentCity.metric: currentCity.imperial}
+           <span> {currentCity.name}</span>
+            <br/>
+            <span> {currentPreferences.metric ? currentCity.metric: currentCity.imperial} &#176; </span>
         </Container>
     );
 } 

@@ -10,13 +10,11 @@ import { changeDarkMode, changeMetric } from '../../redux/preferencesReducer';
 
 export const NavBar = () => {
 
-    const cuurentPreferences = useSelector(state => state.preferences.value);
+    const currentPreferences = useSelector(state => state.preferences.value);
     const dispach = useDispatch();
 
     const toggleDarkMode = () => {
-
         dispach(changeDarkMode())
-        console.log(cuurentPreferences)
     }
 
     const toggleMetric = () => {
@@ -26,12 +24,27 @@ export const NavBar = () => {
     return (
         <NavBarStyled>
             <ul>
-                <li><Link to="/home"><IoHomeOutline /></Link></li>
-                <li><Link to="/favorites"><MdOutlineFavorite /></Link></li>
+                <li>
+                    <ul>
+                        <li>
+                            <IconButton onClick={toggleDarkMode}  >{currentPreferences.darkMode ? <MdOutlineDarkMode /> : <MdDarkMode />}</IconButton>
+                        </li>
+                        <li>
+                            <IconButton onClick={toggleMetric} >{currentPreferences.metric ? <span> F &#176; </span> : <span> C &#176; </span>}</IconButton>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>
+                            <IconButton >    <Link to="/home"><IoHomeOutline /></Link></IconButton >
+                        </li>
+                        <li>
+                            <IconButton >     <Link to="/favorites"><MdOutlineFavorite /></Link></IconButton >
+                        </li>
+                    </ul>
+                </li>
             </ul>
-
-            <IconButton onClick={toggleDarkMode}  >{cuurentPreferences.darkMode ? <MdOutlineDarkMode /> : <MdDarkMode />}</IconButton>
-            <IconButton onClick={toggleMetric} >{cuurentPreferences.metric ? <span> F &#176; </span> : <span> C &#176; </span>}</IconButton>
 
         </NavBarStyled>
     );

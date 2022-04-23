@@ -8,9 +8,8 @@ export const ForcastCard = ({ item }) => {
 
     
     return (
-        <Card>
-            <br />
-            <span>day: {item.dayName }</span>
+        <Card >
+            <span>{item.dayName }</span>
             <br />
             <span>Max: {currentPreferences.metric ? item.metric.max: item.imperial.max} &#176; </span>
             <br />

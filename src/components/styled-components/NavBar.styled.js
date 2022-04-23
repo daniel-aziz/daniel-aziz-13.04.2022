@@ -5,12 +5,8 @@ export const NavBarStyled = styled.nav`
     li {
         display: inline-flex;
         list-style: none;
-        margin-right: 10px;
-        font-size: 2rem;
+        margin-right: 15px;
     }
 
-    li:hover {
-        transform: scale(0.95);
-    }
 
 `

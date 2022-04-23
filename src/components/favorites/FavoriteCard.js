@@ -22,7 +22,7 @@ export const FavoriteCard = ({ item }) => {
 
     return (
 
-        <Card style={{ border: "1px solid black" }} onClick={setCurrCity}>
+        <Card hover={true} onClick={setCurrCity}>
 
             <br />
             <span>{item.name}</span>
