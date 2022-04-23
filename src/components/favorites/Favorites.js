@@ -1,25 +1,24 @@
 import { Container } from "../styled-components/Container.styled";
 import { FavoriteCard } from "./FavoriteCard";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setFavoritesState } from "../../redux/favoritesReducer";
 
 
 export const Favorites = () => {
-    let daysData = [
-        {
-            city: "Tel Aviv",
-            degree: 35,
-            description : "Sunny"
-        },
-        {
-            city: "New York",
-            degree: 19,
-            description : "Cloudy"
-        },
-    ]
+  const currFavorites = useSelector(state => state.favorites.value)
+  const dispach = useDispatch();
 
-    const getFavorites = () => {
+    useEffect(()=>{
+        dispach(setFavoritesState());
+
+    },[dispach])
+
+    const getFav= () => {
+        console.log(currFavorites)
         return (
             <>
-            {daysData.map((item, index)=>
+            {currFavorites?.map((item, index)=>
                 <FavoriteCard key={index} item={item}/>
             )}
             </>
@@ -28,7 +27,7 @@ export const Favorites = () => {
 
     return (
         <Container>
-            {getFavorites()}
+             {getFav()}
         </Container>
     );
 } 

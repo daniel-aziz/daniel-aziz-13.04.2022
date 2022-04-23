@@ -6,7 +6,7 @@ import {Title} from "./Title"
 export const Header = () => {
     return (
         <HeaderStyled>
-            <Title title={"Herolo Weather App"}/>
+            <Title/>
             <NavBar/>
         </HeaderStyled>
     );

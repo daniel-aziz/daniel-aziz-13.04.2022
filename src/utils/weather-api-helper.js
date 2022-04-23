@@ -1,17 +1,20 @@
 
 import axios from "axios";
 import { City } from "../components/models/city";
-import {convertToCelsius} from "./convert-api"
+import {convertToCelsius} from "./helper"
 
 
-const APIKEY = "cNg0K9cxGzKbGzkLvBAPskQAAgqAEqGg";
+const APIKEY = "OVcuj1xCrqy9SZU4uG2k4iMbhdMmVLPR";
 
 export const getCityListByString = async (str) => {
     let response = {};
     let cityList = [];
+    let cityArray = [];
     try {
         response = await axios.get(getAutoCompURL(str))
-        response.data.forEach((item)=>{
+        console.log(response)
+        cityArray = response.data;
+        cityArray.forEach((item)=>{
             cityList.push({
                 key: item.Key,
                 city: item.LocalizedName,
@@ -22,7 +25,6 @@ export const getCityListByString = async (str) => {
     } catch (error) {
         console.log(error)
     } finally {
-        console.log(cityList)
         return cityList;
     }
 }
@@ -39,7 +41,6 @@ export const getWeatherByGeoLocation = async (latitude, longitude) => {
     } catch (error) {
         console.log(error)
     } finally {
-        console.log(city)
         return city;
     }
 }
@@ -55,7 +56,6 @@ export const getWeatherByCityKey = async (city_key, city_name) => {
     } catch (error) {
         console.log(error)
     } finally {
-        console.log(city)
         return city;
     }
 
@@ -69,7 +69,7 @@ const setForcastArr = (data) => {
         let min = item.Temperature.Minimum.Value;
         let max = item.Temperature.Maximum.Value;
         response.push({
-            dayName: days[new Date(item.Date)],
+            dayName: days[new Date(item.Date).getDay()],
             metric: {
                 min: convertToCelsius(min),
                 max: convertToCelsius(max)
