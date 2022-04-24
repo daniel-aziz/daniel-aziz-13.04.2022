@@ -13,8 +13,12 @@ export const Current = () => {
 
     function setInitCityData() {
         let cityStorage = JSON.parse(localStorage.getItem("city"))
-        if (cityStorage === undefined && cityStorage === null) return;
-        if (cityStorage.key.length > 0) return;
+        if (cityStorage === undefined || cityStorage === null) {
+            return
+        };
+        if (cityStorage?.key.length !== 0) {
+            return
+        };;
 
         navigator.geolocation.getCurrentPosition(
             (success => {

@@ -1,6 +1,6 @@
 import { Main } from './components/main/Main';
 import { Header } from "./components/header/Header"
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 import { setPreferencesState } from './redux/preferencesReducer';
 import { setFavoritesState } from './redux/favoritesReducer';
@@ -25,11 +25,11 @@ function App() {
   return (
     <>
       <ThemeProvider theme={currentPreferences.darkMode ? darkTheme : lightTheme}>
-        <BrowserRouter>
+        <HashRouter>
           <GlobalStyles />
           <Header />
           <Main />
-        </BrowserRouter>
+        </HashRouter>
 
       </ThemeProvider>
     </>

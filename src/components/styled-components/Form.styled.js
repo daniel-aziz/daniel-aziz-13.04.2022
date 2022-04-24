@@ -21,7 +21,12 @@ export const FormStyled = styled.form`
         border: none;
         border-radius: 5px;
         border-bottom: 1px solid #ddd;
+        color: ${({theme})=> theme.text};
         background-color: ${({theme})=> theme.bgSugg};
+    }
+
+    .suggestions-input::placeholder {
+        color: ${({theme})=> theme.text};
     }
 
     .suggestions-input:focus {

@@ -47,5 +47,6 @@
   },
   "devDependencies": {
     "@redux-devtools/core": "^3.11.0"
-  }
+  },
+  "homepage": "./"
 }

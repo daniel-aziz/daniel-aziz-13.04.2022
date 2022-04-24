@@ -18,6 +18,10 @@ export const HeaderStyled = styled.header`
         align-self: center;
     }
 
+    @media (max-height: 500px) {
+        display: none;
+    }
+
     @media (max-width:300px) {
         flex-direction: column;
         text-align: center;
