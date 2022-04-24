@@ -2,8 +2,12 @@
 
 run `npm install` & `npm start` to run locally
 
-<a herf="https://globali-weather.web.app">Link To Live Site</a>
 
+
+## [Link to live site](https://globali-weather.web.app)
+
+
+\
 Libraries used 
 
 ```
