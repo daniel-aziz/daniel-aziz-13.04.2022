@@ -5,12 +5,10 @@ export const FormStyled = styled.form`
     display: flex;
     justify-content: center;
 
-    ul {
-        list-style-type: none;
-    }
 
-    li:hover {
-        background-color: ${({theme})=> "blue"};
+
+    p:hover {
+        background-color: ${({theme})=> theme.bgSuggP};
         cursor: pointer;
     }
 
@@ -23,6 +21,7 @@ export const FormStyled = styled.form`
         border: none;
         border-radius: 5px;
         border-bottom: 1px solid #ddd;
+        background-color: ${({theme})=> theme.bgSugg};
     }
 
     .suggestions-input:focus {
@@ -32,15 +31,14 @@ export const FormStyled = styled.form`
     .suggestions-box {
         position: absolute;
         width: 250px;
-        overflow: auto;
+        overflow: hidden;
         border: 1px solid #ddd;
         z-index: 1;
         padding: 0;
         text-decoration: none;
         display: block;
         text-align: center;
-        color: ${({ theme }) => theme.colorSgBox};
-        background-color: ${({ theme }) => theme.bgSgBox};
+        background-color: ${({ theme }) => theme.bgSugg};
     }
     
 `

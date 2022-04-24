@@ -19,7 +19,7 @@ export const CurrentWeather = () => {
 
         if (containsCityByKey(currentCity.key, currFavorites)) {
             return (
-                <IconButton onClick={() => { 
+                <IconButton color="red" onClick={() => { 
                     notify.success("Removed from favorites")
                     dispach(removeFromFavorites(currentCity))
                  }} >  <MdOutlineFavorite /> </IconButton>
@@ -27,7 +27,7 @@ export const CurrentWeather = () => {
         }
 
         return (
-            <IconButton onClick={() => { 
+            <IconButton color="red" onClick={() => { 
                 notify.success("Added to favorites")
                 dispach(addToFavorites(currentCity)) 
             }} > <MdOutlineFavoriteBorder /> </IconButton>

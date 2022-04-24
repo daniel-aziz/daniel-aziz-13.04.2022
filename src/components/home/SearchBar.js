@@ -58,20 +58,18 @@ export const SearchBar = () => {
                     <div
                         style={{ display: suggestions.length > 0 || "none" }}
                         className="suggestions-box"
-                        onFocus={(e)=>{e.target.style.display =   "none"}}
-                        >
                         
-                        <ul>
+                        >
                             {suggestions.map((item, index) =>
-                                <li key={index}
+                                <p key={index}
                                     onClick={() => {
                                         setWeather(item.key, item.city, item.fullName)
                                         setSuggestions([])
                                     }}>
                                     {item.fullName}
-                                </li>
+                                </p>
                             )}
-                        </ul>
+                        
                     </div>
                 </div>
             </FormStyled>

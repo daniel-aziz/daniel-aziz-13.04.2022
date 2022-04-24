@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 export const Card = styled.div`
     background-color: ${({ theme }) => theme.bgCard};
+    
     text-align: center;
     padding: 5px;
     border: 1px solid #DCDCDC;

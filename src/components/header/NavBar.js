@@ -39,7 +39,9 @@ export const NavBar = () => {
                 </li>
                 <li>
                     <IconButton
-                        bgActive={location.pathname === "/favorites"}>
+                        bgActive={location.pathname === "/favorites"}
+                        color="red"
+                        >
                         <Link to="/favorites">
                             <MdOutlineFavorite />
                         </Link>
