@@ -10,4 +10,9 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Libre Bodoni', serif;
     transition: all 0.50s linear;
   }
+
+  h1, h2, h3 { 
+    color: ${({theme})=> theme.h1};
+    transition: all 0.50s linear;
+  }
   `

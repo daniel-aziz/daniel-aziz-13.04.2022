@@ -1,14 +1,32 @@
 export const lightTheme = {
-    body: '#FFF',
-    text: '#363537',
-    toggleBorder: '#FFF',
-    background: '#363537',
+    body: '#F5F5F5',
+    header: "#46B5D1" , 
+
+    h1: "#151965",
+    text: '#151965',
+
+    buttonBg: "#151965",
+
+    buttonColor: 'black',
+    bgCard: "#FFFFFF",
+
+    bgSgBox: "#FFFFFF",
 }
 
 export const darkTheme = {
-    body: '#363537',
-    text: '#FAFAFA',
-    toggleBorder: '#6B8096',
-    background: '#999',
+    body: 'rgba( 0,0,0,.7 )',
+    header: "#181818" , 
+
+    h1: "#FFFFFF",
+    text: '#FFFFFF',
+    
+    buttonBg: "#B3B3B3",
+
+    buttonColor: '#FFFFFF',
+
+    bgSgBox: "#B3B3B3",
+    bgCard: "#404040",
+
+    
 }
 

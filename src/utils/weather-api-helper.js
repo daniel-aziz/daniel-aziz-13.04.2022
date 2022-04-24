@@ -1,10 +1,11 @@
 
 import axios from "axios";
 import { City } from "../components/models/city";
-import {convertToCelsius} from "./helper"
+import { convertToCelsius } from "./helper"
+import notify from "./Notify";
 
 
-const APIKEY = "OVcuj1xCrqy9SZU4uG2k4iMbhdMmVLPR";
+const APIKEY = "SdfEMYtkG8riGTyeNhhCKsBJpzVdg40R";
 
 export const getCityListByString = async (str) => {
     let response = {};
@@ -12,9 +13,8 @@ export const getCityListByString = async (str) => {
     let cityArray = [];
     try {
         response = await axios.get(getAutoCompURL(str))
-        console.log(response)
         cityArray = response.data;
-        cityArray.forEach((item)=>{
+        cityArray.forEach((item) => {
             cityList.push({
                 key: item.Key,
                 city: item.LocalizedName,
@@ -23,7 +23,7 @@ export const getCityListByString = async (str) => {
             })
         })
     } catch (error) {
-        console.log(error)
+        notify.error("Error with fetching data from server")
     } finally {
         return cityList;
     }
@@ -39,7 +39,7 @@ export const getWeatherByGeoLocation = async (latitude, longitude) => {
         response['forcast'] = await axios.get(getForcastURL(response.geo.data.Key));
         city = cityBuilder(response, response.geo.data.Key, response.geo.data.EnglishName)
     } catch (error) {
-        console.log(error)
+        notify.error("Error with fetching data from server")
     } finally {
         return city;
     }
@@ -52,9 +52,9 @@ export const getWeatherByCityKey = async (city_key, city_name) => {
     try {
         response['current'] = await axios.get(getCurrentURL(city_key))
         response['forcast'] = await axios.get(getForcastURL(city_key));
-        city = cityBuilder(response, city_key, city_name)    
+        city = cityBuilder(response, city_key, city_name)
     } catch (error) {
-        console.log(error)
+        notify.error("Error with fetching data from server")
     } finally {
         return city;
     }
@@ -65,18 +65,18 @@ export const getWeatherByCityKey = async (city_key, city_name) => {
 const setForcastArr = (data) => {
     let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     let response = [];
-    data.forEach((item)=>{
+    data.forEach((item) => {
         let min = item.Temperature.Minimum.Value;
         let max = item.Temperature.Maximum.Value;
         response.push({
             dayName: days[new Date(item.Date).getDay()],
             metric: {
-                min: convertToCelsius(min),
-                max: convertToCelsius(max)
+                min: unitSlicer(convertToCelsius(min)),
+                max: unitSlicer(convertToCelsius(max))
             },
             imperial: {
-                min: min.toString(),
-                max: max.toString()
+                min: unitSlicer(min),
+                max: unitSlicer(max)
             }
         })
     })
@@ -88,11 +88,13 @@ const cityBuilder = (response, city_key, city_name) => {
     city.key = city_key
     city.name = city_name
     city.description = response.current.data[0].WeatherText
-    city.metric = response.current.data[0].Temperature.Metric.Value.toString().substring(0,2)
-    city.imperial = response.current.data[0].Temperature.Imperial.Value.toString().substring(0,2)
+    city.metric = unitSlicer(response.current.data[0].Temperature.Metric.Value)
+    city.imperial = unitSlicer(response.current.data[0].Temperature.Imperial.Value)
     city.forcast = setForcastArr(response.forcast.data.DailyForecasts);
     return city;
 }
+
+const unitSlicer = (unit) => parseInt(String(unit), 10);
 
 const getAutoCompURL = (str) => `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${APIKEY}&q=${str}`;
 

@@ -2,8 +2,6 @@
 import { Container } from "../../styled-components/Container.styled"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { CurrentFavBar } from "./CurrentFavBar";
-import { CurrentDescription } from "./CurrentDescription";
 import { CurrentWeather } from "./CurrentWeather";
 import { CurrentForcast } from "./CurrentForcast";
 import { getWeatherByCityKey, getWeatherByGeoLocation } from "../../../utils/weather-api-helper"
@@ -49,15 +47,11 @@ export const Current = () => {
     useEffect(() => {
         setInitCityData()
     }, [])
-
+    
     return (
         <Container>
-
-            <CurrentFavBar />
             <CurrentWeather />
-            <CurrentDescription  />
             <CurrentForcast/>
-
         </Container>
     );
 } 

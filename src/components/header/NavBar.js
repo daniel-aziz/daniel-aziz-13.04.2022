@@ -6,12 +6,15 @@ import { IconButton } from '../styled-components/IconButton.styled';
 import { NavBarStyled } from '../styled-components/NavBar.styled';
 import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md"
 import { changeDarkMode, changeMetric } from '../../redux/preferencesReducer';
+import { useLocation } from 'react-router-dom'
+import notify from '../../utils/Notify';
 
 
 export const NavBar = () => {
-
     const currentPreferences = useSelector(state => state.preferences.value);
+
     const dispach = useDispatch();
+    const location = useLocation();
 
     const toggleDarkMode = () => {
         dispach(changeDarkMode())
@@ -19,30 +22,39 @@ export const NavBar = () => {
 
     const toggleMetric = () => {
         dispach(changeMetric())
+        if (currentPreferences.metric) {
+            notify.success("Changed to Fahrenheit!")
+        } else notify.success("Changed to Celsius!")
+
     }
 
     return (
         <NavBarStyled>
             <ul>
                 <li>
-                    <ul>
-                        <li>
-                            <IconButton onClick={toggleDarkMode}  >{currentPreferences.darkMode ? <MdOutlineDarkMode /> : <MdDarkMode />}</IconButton>
-                        </li>
-                        <li>
-                            <IconButton onClick={toggleMetric} >{currentPreferences.metric ? <span> F &#176; </span> : <span> C &#176; </span>}</IconButton>
-                        </li>
-                    </ul>
+                    <IconButton
+                        bgActive={location.pathname === "/home" || location.pathname === "/"}>
+                        <Link to="/home"><IoHomeOutline /></Link>
+                    </IconButton >
                 </li>
                 <li>
-                    <ul>
-                        <li>
-                            <IconButton >    <Link to="/home"><IoHomeOutline /></Link></IconButton >
-                        </li>
-                        <li>
-                            <IconButton >     <Link to="/favorites"><MdOutlineFavorite /></Link></IconButton >
-                        </li>
-                    </ul>
+                    <IconButton
+                        bgActive={location.pathname === "/favorites"}>
+                        <Link to="/favorites">
+                            <MdOutlineFavorite />
+                        </Link>
+                    </IconButton >
+                </li>
+                <li>
+                    <IconButton
+                        onClick={toggleDarkMode} >
+                        {currentPreferences.darkMode ? <MdOutlineDarkMode /> : <MdDarkMode />}
+                    </IconButton>
+                </li>
+                <li>
+                    <IconButton onClick={toggleMetric}>
+                        <span>{currentPreferences.metric ? "F" : "C"} &#176;</span>
+                    </IconButton>
                 </li>
             </ul>
 

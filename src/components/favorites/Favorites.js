@@ -1,33 +1,25 @@
-import { Container } from "../styled-components/Container.styled";
 import { FavoriteCard } from "./FavoriteCard";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setFavoritesState } from "../../redux/favoritesReducer";
+import { CardContainer } from "../styled-components/CardContainer.styled";
+import { HomeStyled } from "../styled-components/Home.styled";
 
 
 export const Favorites = () => {
-  const currFavorites = useSelector(state => state.favorites.value)
-  const dispach = useDispatch();
+    const currFavorites = useSelector(state => state.favorites.value)
+    const dispach = useDispatch();
 
-    useEffect(()=>{
+    useEffect(() => {
         dispach(setFavoritesState());
+    }, [dispach])
 
-    },[dispach])
-
-    const getFav= () => {
-        console.log(currFavorites)
-        return (
-            <>
-            {currFavorites?.map((item, index)=>
-                <FavoriteCard key={index} item={item}/>
-            )}
-            </>
-        )
-    }
 
     return (
-        <Container>
-             {getFav()}
-        </Container>
+        <HomeStyled>
+            <CardContainer>
+                {currFavorites?.map((item, index) => <FavoriteCard key={index} item={item} />)}
+            </CardContainer>
+        </HomeStyled>
     );
 } 

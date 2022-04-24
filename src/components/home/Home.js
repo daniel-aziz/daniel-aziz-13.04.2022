@@ -1,11 +1,13 @@
-import { SearchBar } from "./search/SearchBar";
-import { Current } from "./current/Current";
+import { SearchBar } from "./SearchBar";
+import { Current } from "./Current";
+import { HomeStyled } from "../styled-components/Home.styled";
 
 export const Home = () => {
     return (
-        <div className="Home">
+        <HomeStyled>
             <SearchBar/>
             <Current/>
-        </div>
+        </HomeStyled>
     );
 } 
+

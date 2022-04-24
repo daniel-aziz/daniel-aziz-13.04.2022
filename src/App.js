@@ -1,7 +1,7 @@
 import { Main } from './components/main/Main';
 import { Header } from "./components/header/Header"
 import { BrowserRouter } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { setPreferencesState } from './redux/preferencesReducer';
 import { setFavoritesState } from './redux/favoritesReducer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,20 +19,20 @@ function App() {
     dispach(setFavoritesState())
     dispach(setPreferencesState())
     dispach(setCityState());
-  },[])
+  }, [dispach])
 
 
   return (
-    <ThemeProvider theme={currentPreferences.darkMode ? darkTheme : lightTheme}>
     <>
-    
-      <BrowserRouter>
-      <GlobalStyles/>
-        <Header />
-        <Main />
-      </BrowserRouter>
+      <ThemeProvider theme={currentPreferences.darkMode ? darkTheme : lightTheme}>
+        <BrowserRouter>
+          <GlobalStyles />
+          <Header />
+          <Main />
+        </BrowserRouter>
+
+      </ThemeProvider>
     </>
-    </ThemeProvider>
   );
 }
 

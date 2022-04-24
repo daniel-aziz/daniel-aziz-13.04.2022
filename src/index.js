@@ -25,9 +25,9 @@ const store = configureStore({
       // Ignore these action types
       ignoredActions: ['setCity','removeCity'],
       // Ignore these field paths in all actions
-      ignoredActionPaths: ['city.value','payload'],
+      ignoredActionPaths: ['city.value','payload','favorites.value.3'],
       // Ignore these paths in the state
-      ignoredPaths: ['city.value'],
+      ignoredPaths: ['city.value','favorites.value'],
     },
   }),
 })

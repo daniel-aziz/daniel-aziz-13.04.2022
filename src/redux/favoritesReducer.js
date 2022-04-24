@@ -8,7 +8,6 @@ const favoritesSlice = createSlice({
         addToFavorites: (state, action) => {
             if (action.payload.key.length > 0) {
                 let favStorage = JSON.parse(localStorage.getItem("favorites"))
-                console.log(typeof favStorage)
                 if (favStorage !== undefined || favStorage !== null || !containsCityByKey(action.payload.key, favStorage)) {
                     state.value.push(action.payload)
                     localStorage.setItem("favorites", JSON.stringify(state.value))
