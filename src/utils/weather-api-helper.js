@@ -5,7 +5,8 @@ import { convertToCelsius } from "./helper"
 import notify from "./Notify";
 
 
-const APIKEY = "Ue5wM1HjmEpSeM78oI6ASkyMGH2g8mvF";
+const APIKEY = "9nGDmR9JrffDYGoo05xHAJvKksQtBKmf";
+
 
 export const getCityListByString = async (str) => {
     let response = {};
